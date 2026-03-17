@@ -1,0 +1,499 @@
+/**
+ * AI Content Optimizer Styles
+ *
+ * @package Invenzia_SEO_Matrix
+ * Dark Luxury UI System with Glassmorphism
+ */
+
+/* Glassmorphism Panel Base */
+.invenzia-ai-optimizer {
+	background: linear-gradient(
+		135deg,
+		rgba( 20, 20, 25, 0.95 ) 0%,
+		rgba( 30, 30, 40, 0.95 ) 100%
+	);
+	backdrop-filter: blur( 20px );
+	-webkit-backdrop-filter: blur( 20px );
+	border-radius: 16px;
+	padding: 20px;
+	border: 1px solid rgba( 255, 255, 255, 0.08 );
+	box-shadow:
+		0 8px 32px rgba( 0, 0, 0, 0.4 ),
+		inset 0 1px 0 rgba( 255, 255, 255, 0.1 );
+	color: #e8e8e8;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+	position: relative;
+}
+
+.invenzia-ai-optimizer::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	pointer-events: none;
+	border-radius: 16px;
+	background:
+		radial-gradient( ellipse at top, rgba( 255, 215, 0, 0.05 ) 0%, transparent 50% ),
+		radial-gradient( ellipse at bottom, rgba( 100, 149, 237, 0.03 ) 0%, transparent 50% );
+	z-index: -1;
+}
+
+/* Empty State */
+.invenzia-ai-empty-state,
+.invenzia-ai-loading-state,
+.invenzia-ai-error-state {
+	text-align: center;
+	padding: 40px 20px;
+	color: rgba( 232, 232, 232, 0.7 );
+}
+
+.invenzia-ai-loading-state .components-spinner {
+	margin: 0 auto 15px;
+}
+
+.invenzia-ai-retry-btn {
+	background: linear-gradient( 135deg, #1a1a2e 0%, #16213e 100% );
+	border: 1px solid rgba( 255, 255, 255, 0.15 );
+	color: #e8e8e8;
+	padding: 10px 24px;
+	border-radius: 8px;
+	cursor: pointer;
+	font-size: 14px;
+	transition: all 0.3s ease;
+}
+
+.invenzia-ai-retry-btn:hover {
+	background: linear-gradient( 135deg, #16213e 0%, #1a1a2e 100% );
+	border-color: rgba( 255, 215, 0, 0.3 );
+	box-shadow: 0 4px 16px rgba( 255, 215, 0, 0.15 );
+}
+
+/* SEO Score Meter */
+.invenzia-ai-score-container {
+	text-align: center;
+	margin-bottom: 24px;
+}
+
+.invenzia-ai-score-meter {
+	position: relative;
+	display: inline-block;
+	width: 120px;
+	height: 120px;
+	transition: all 0.5s ease;
+}
+
+.invenzia-ai-glow-gold {
+	animation: goldGlow 2s ease-in-out infinite;
+}
+
+.invenzia-ai-glow-silver {
+	animation: silverGlow 2s ease-in-out infinite;
+}
+
+.invenzia-ai-glow-blue {
+	animation: blueGlow 2s ease-in-out infinite;
+}
+
+@keyframes goldGlow {
+	0%, 100% {
+		filter: drop-shadow( 0 0 10px rgba( 255, 215, 0, 0.4 ) );
+	}
+	50% {
+		filter: drop-shadow( 0 0 20px rgba( 255, 215, 0, 0.6 ) );
+	}
+}
+
+@keyframes silverGlow {
+	0%, 100% {
+		filter: drop-shadow( 0 0 10px rgba( 192, 192, 192, 0.4 ) );
+	}
+	50% {
+		filter: drop-shadow( 0 0 20px rgba( 192, 192, 192, 0.6 ) );
+	}
+}
+
+@keyframes blueGlow {
+	0%, 100% {
+		filter: drop-shadow( 0 0 10px rgba( 100, 149, 237, 0.4 ) );
+	}
+	50% {
+		filter: drop-shadow( 0 0 20px rgba( 100, 149, 237, 0.6 ) );
+	}
+}
+
+.invenzia-ai-score-bg {
+	stroke: rgba( 255, 255, 255, 0.08 );
+}
+
+.invenzia-ai-score-progress {
+	stroke-width: 8;
+	transition: stroke-dashoffset 0.5s ease;
+}
+
+.invenzia-ai-glow-gold .invenzia-ai-score-progress {
+	stroke: url( #goldGradient );
+}
+
+.invenzia-ai-glow-silver .invenzia-ai-score-progress {
+	stroke: url( #silverGradient );
+}
+
+.invenzia-ai-glow-blue .invenzia-ai-score-progress {
+	stroke: url( #blueGradient );
+}
+
+.invenzia-ai-score-value {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate( -50%, -50% );
+	font-size: 32px;
+	font-weight: 700;
+	background: linear-gradient( 135deg, #ffd700 0%, #ffed4a 100% );
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+}
+
+.invenzia-ai-glow-silver .invenzia-ai-score-value {
+	background: linear-gradient( 135deg, #c0c0c0 0%, #e8e8e8 100% );
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+}
+
+.invenzia-ai-glow-blue .invenzia-ai-score-value {
+	background: linear-gradient( 135deg, #6495ed 0%, #87ceeb 100% );
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+}
+
+.invenzia-ai-score-label {
+	margin-top: 12px;
+	font-size: 14px;
+	color: rgba( 232, 232, 232, 0.7 );
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
+/* Panel Bodies */
+.invenzia-ai-panel-body {
+	background: rgba( 0, 0, 0, 0.2 );
+	border-radius: 12px;
+	margin-bottom: 16px;
+	border: 1px solid rgba( 255, 255, 255, 0.05 );
+	overflow: hidden;
+}
+
+.components-panel__body.invenzia-ai-panel-body {
+	background: transparent;
+}
+
+/* Panel Header */
+.invenzia-ai-optimizer .components-panel__body-title {
+	background: rgba( 0, 0, 0, 0.3 );
+	border-bottom: 1px solid rgba( 255, 255, 255, 0.05 );
+}
+
+.invenzia-ai-optimizer .components-panel__body-toggle.components-button {
+	color: rgba( 232, 232, 232, 0.9 );
+}
+
+.invenzia-ai-optimizer .components-panel__body-toggle.components-button:hover {
+	background: rgba( 255, 255, 255, 0.05 );
+}
+
+/* Metrics */
+.invenzia-ai-metric {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 12px 16px;
+	background: rgba( 255, 255, 255, 0.03 );
+	border-radius: 8px;
+	margin-bottom: 8px;
+}
+
+.invenzia-ai-metric:last-child {
+	margin-bottom: 0;
+}
+
+.invenzia-ai-metric-label {
+	font-size: 13px;
+	color: rgba( 232, 232, 232, 0.7 );
+}
+
+.invenzia-ai-metric-value {
+	font-size: 16px;
+	font-weight: 600;
+	color: #ffd700;
+}
+
+.invenzia-ai-metric-value.optimal {
+	color: #4caf50;
+}
+
+.invenzia-ai-metric-value.suboptimal {
+	color: #ff9800;
+}
+
+/* Checklist */
+.invenzia-ai-checklist {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 8px 0;
+}
+
+.invenzia-ai-check {
+	width: 20px;
+	height: 20px;
+	border-radius: 4px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 12px;
+	font-weight: 700;
+}
+
+.invenzia-ai-check.checked {
+	background: rgba( 76, 175, 80, 0.2 );
+	color: #4caf50;
+	border: 1px solid rgba( 76, 175, 80, 0.4 );
+}
+
+.invenzia-ai-check.unchecked {
+	background: rgba( 255, 152, 0, 0.1 );
+	color: rgba( 255, 152, 0, 0.6 );
+	border: 1px solid rgba( 255, 152, 0, 0.3 );
+}
+
+/* LSI Keywords */
+.invenzia-ai-lsi-keywords {
+	padding: 12px 0;
+}
+
+.invenzia-ai-lsi-keywords h4 {
+	font-size: 13px;
+	color: rgba( 232, 232, 232, 0.9 );
+	margin: 0 0 12px 0;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+}
+
+.invenzia-ai-lsi-keywords ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.invenzia-ai-lsi-keywords li {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 8px 0;
+	border-bottom: 1px solid rgba( 255, 255, 255, 0.05 );
+}
+
+.invenzia-ai-lsi-keywords li:last-child {
+	border-bottom: none;
+}
+
+.invenzia-ai-lsi-keyword {
+	font-size: 14px;
+	color: rgba( 232, 232, 232, 0.8 );
+}
+
+.invenzia-ai-lsi-relevance {
+	font-size: 12px;
+	color: rgba( 255, 215, 0, 0.8 );
+	background: rgba( 255, 215, 0, 0.1 );
+	padding: 2px 8px;
+	border-radius: 10px;
+}
+
+/* Suggestions */
+.invenzia-ai-suggestions-list {
+	margin-bottom: 16px;
+}
+
+.invenzia-ai-suggestion {
+	display: flex;
+	align-items: flex-start;
+	gap: 12px;
+	padding: 12px;
+	background: rgba( 0, 0, 0, 0.3 );
+	border-radius: 8px;
+	margin-bottom: 8px;
+	border-left: 3px solid;
+}
+
+.invenzia-ai-suggestion-warning {
+	border-color: #ff9800;
+}
+
+.invenzia-ai-suggestion-suggestion {
+	border-color: #6495ed;
+}
+
+.invenzia-ai-suggestion-icon {
+	font-size: 16px;
+	line-height: 1;
+	flex-shrink: 0;
+}
+
+.invenzia-ai-suggestion span:last-child {
+	font-size: 13px;
+	color: rgba( 232, 232, 232, 0.85 );
+	line-height: 1.5;
+}
+
+/* Title Suggestions */
+.invenzia-ai-title-suggestions {
+	padding: 12px 0;
+}
+
+.invenzia-ai-title-suggestions h4 {
+	font-size: 13px;
+	color: rgba( 232, 232, 232, 0.9 );
+	margin: 0 0 12px 0;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+}
+
+.invenzia-ai-title-suggestions ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.invenzia-ai-title-suggestions li {
+	padding: 8px 0;
+	font-size: 13px;
+	color: rgba( 232, 232, 232, 0.8 );
+	line-height: 1.5;
+	position: relative;
+	padding-left: 20px;
+}
+
+.invenzia-ai-title-suggestions li::before {
+	content: '→';
+	position: absolute;
+	left: 0;
+	color: #6495ed;
+}
+
+/* Content Gaps */
+.invenzia-ai-content-gaps {
+	padding: 12px 0;
+}
+
+.invenzia-ai-content-gaps h4 {
+	font-size: 13px;
+	color: rgba( 232, 232, 232, 0.9 );
+	margin: 0 0 12px 0;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+}
+
+.invenzia-ai-content-gaps ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.invenzia-ai-content-gaps li {
+	padding: 8px 0;
+	font-size: 13px;
+	color: rgba( 232, 232, 232, 0.8 );
+	line-height: 1.5;
+	position: relative;
+	padding-left: 20px;
+}
+
+.invenzia-ai-content-gaps li::before {
+	content: '!';
+	position: absolute;
+	left: 0;
+	color: #ff9800;
+	font-weight: 700;
+}
+
+/* Actions */
+.invenzia-ai-actions {
+	margin-top: 20px;
+	padding-top: 20px;
+	border-top: 1px solid rgba( 255, 255, 255, 0.08 );
+}
+
+.invenzia-ai-refresh-btn {
+	width: 100%;
+	background: linear-gradient( 135deg, #1a1a2e 0%, #16213e 100% );
+	border: 1px solid rgba( 255, 215, 0, 0.2 );
+	color: #e8e8e8;
+	padding: 14px 24px;
+	border-radius: 10px;
+	cursor: pointer;
+	font-size: 14px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	transition: all 0.3s ease;
+	position: relative;
+	overflow: hidden;
+}
+
+.invenzia-ai-refresh-btn::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: -100%;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient( 90deg, transparent, rgba( 255, 255, 255, 0.1 ), transparent );
+	transition: left 0.5s ease;
+}
+
+.invenzia-ai-refresh-btn:hover::before {
+	left: 100%;
+}
+
+.invenzia-ai-refresh-btn:hover {
+	background: linear-gradient( 135deg, #16213e 0%, #1a1a2e 100% );
+	border-color: rgba( 255, 215, 0, 0.4 );
+	box-shadow: 0 4px 20px rgba( 255, 215, 0, 0.2 );
+	transform: translateY( -2px );
+}
+
+.invenzia-ai-refresh-btn:active {
+	transform: translateY( 0 );
+}
+
+.invenzia-ai-refresh-btn:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
+/* Responsive */
+@media ( max-width: 600px ) {
+	.invenzia-ai-optimizer {
+		border-radius: 12px;
+		padding: 16px;
+	}
+
+	.invenzia-ai-score-container {
+		margin-bottom: 20px;
+	}
+
+	.invenzia-ai-score-meter {
+		width: 100px;
+		height: 100px;
+	}
+
+	.invenzia-ai-score-value {
+		font-size: 28px;
+	}
+}
